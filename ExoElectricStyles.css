@@ -6,6 +6,19 @@
 #F6F6F6 -BACKGROUND
 */
 
+h2 {
+  font-family: "Lucida Console", "Lucida", monospace;
+  font-size: 24px;
+  color: #navy;
+}
+
+h3 {
+  font-family: "Lucida Console", "Lucida", monospace;
+  font-size: 16px;
+  font-weight: 100;
+  color: #navy;
+}
+
 body{
   padding: 25px;
 	font-family: "Lucida Console", "Lucida", monospace;
@@ -57,4 +70,3 @@ body{
   transform: translateY(0);
 }
 
-}
