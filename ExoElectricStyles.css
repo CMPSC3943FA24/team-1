@@ -19,19 +19,20 @@ h3 {
   color: #navy;
 }
 
+
 body{
   padding: 25px;
-	font-family: "Lucida Console", "Lucida", monospace;
-	color: #navy;
-	background-color: #F6F6F6;
+  font-family: "Lucida Console", "Lucida", monospace;
+  color: #navy;
+  background-color: #F6F6F6;
 }
+
 .title {
-	color: #395C6B;
-	font-family: "Lucida Console", "Lucida", monospace;
+  color: #395C6B;
+  font-family: "Lucida Console", "Lucida", monospace;
 }
 
 .button-1 {
-  appearance: none;
   background-color: transparent;
   border: 2px solid #1A1A1A;
   border-radius: 15px;
@@ -46,14 +47,9 @@ body{
   margin: 0;
   min-height: 60px;
   min-width: 0;
-  outline: none;
   padding: 16px 24px;
   text-align: center;
-  text-decoration: none;
   transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
   width: 100%;
   will-change: transform;
 }
@@ -62,11 +58,120 @@ body{
   color: #fff;
   background-color: #BCDBDC;
   box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-  transform: translateY(-2px);
 }
 
 .button-1:active {
   box-shadow: none;
-  transform: translateY(0);
 }
 
+.button-2 {
+  background-color: transparent;
+  border: 2px solid #1A1A1A;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #3B3B3B;
+  cursor: pointer;
+  font-family: "Lucida Console", "Lucida", monospace;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  min-height: 20px;
+  min-width: 0;
+  padding: 16px 24px;
+  text-align: center;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  width: 50%;
+}
+
+.button-2:hover {
+  color: #fff;
+  background-color: #BCDBDC;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+}
+
+.button-2:active {
+  box-shadow: none;
+}
+
+
+
+/* box around profile/name */
+.profile-nav .user-heading {
+    background: #EAEAEA;
+    color: #fff;
+    border-radius: 4px 4px 0 0;
+    padding: 30px;
+    text-align: center;
+}
+
+.profile-nav .user-heading.round a  {
+    border-radius: 50%;
+    border: 5px solid #395C6B;
+    display: inline-block;
+}
+
+/* ring around pfp */
+.profile-nav .user-heading a img {
+    width: 112px;
+    height: 112px;
+    border-radius: 50%;
+    border: #395C6B;
+    
+}
+
+.profile-nav .user-heading h1 {
+    font-size: 22px;
+    font-weight: 300;
+    margin-bottom: 5px;
+    color: #395C6B;
+}
+
+.profile-nav .user-heading p {
+    color: #395C6B;
+    font-size: 12px;
+}
+
+
+/* user information */
+.bio-graph-info {
+	text-align: center;
+    color: #395C6B;
+}
+
+
+.bio-row {
+	background: #BCDBDC50;
+    width: 50%;
+    float: left;
+    margin-bottom: 10px;
+    padding:0 15px;
+}
+
+
+/* drop down menu */
+.wrapper {
+  padding: 10px;
+  position: relative;
+  text-align: right;
+  color: #BCDBDC;
+}
+
+input {
+  opacity: 0;
+}
+
+.dropdown {
+  background: #F6F6F6;
+  display: none;
+  position: absolute;
+  flex-direction: column;
+  border: 1px solid black;
+  padding: 20px;
+  gap: 5px;
+  right: 0;
+}
+
+input:checked ~ .dropdown {
+  display: flex;
+}
