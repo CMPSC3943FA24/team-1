@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Power Outage Report</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Form for user to submit outage report -->
+  <form id="outageForm">
+    <ul>
+      <li>
+        <label for="problemType">Select your problem:</label>
+        <select id="problemType" required>
+          <option value="">--Choose a problem--</option>
+          <option value="partial">Partial Power</option>
+          <option value="damage">Physical Damage</option>
+          <option value="outage">Power Outage</option>
+          <option value="line">Line Down</option>
+        </select>
+      </li>
+
+      <li>
+        <label for="location">Location:</label>
+        <input type="text" id="location" placeholder="Enter your address" required>
+      </li>
+
+      <li>
+        <label for="comments">Additional Details:</label>
+        <textarea id="comments" placeholder="Describe your issue"></textarea>
+      </li>
+
+      <li>
+        <label for="photoUpload">Upload a Photo:</label>
+        <input type="file" id="photoUpload" accept="image/*">
+      </li>
+
+      <li>
+        <button type="submit">Submit</button>
+      </li>
+    </ul>
+  </form>
+
+  <!-- Confirmation message -->
+  <p id="confirmationMessage" style="display:none;">Your report has been submitted!</p>
+
+  <script src="issueReport.js"></script>
+</body>
+</html>
