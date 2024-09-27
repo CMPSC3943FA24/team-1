@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lineman Requests  view on one page</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>All Requests</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Request ID</th>
+                <th>Type of Request</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="request-list">
+        </tbody>
+    </table>
+    <form id="outageForm">
+        <h3>Submit New Request</h3>
+        <label>Problem Type:</label>
+        <input type="text" id="problemType" required><br><br>
+
+        <label>Location:</label>
+        <input type="text" id="location" required><br><br>
+
+        <label>Comments:</label>
+        <textarea id="comments"></textarea><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+    <script>
+        const requests = [
+            { id: 1, type: 'Power Outage', status: 'Open', date: '2024-09-20' },
+            { id: 2, type: 'Maintenance', status: 'In Progress', date: '2024-09-21' }
+        ];
+
+        const requestList = document.getElementById('request-list');
+        requests.forEach(request => {
+            const row = `
+                <tr>
+                    <td>${request.id}</td>
+                    <td>${request.type}</td>
+                    <td>${request.status}</td>
+                    <td>${request.date}</td>
+                    <td><button>View</button></td>
+                </tr>`;
+            requestList.innerHTML += row;
+        });
+    </script>
+
+</body>
+</html>
