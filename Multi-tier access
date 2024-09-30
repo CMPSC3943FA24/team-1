@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Tier Access System</title>
+</head>
+<body>
+    <h1>Login to Access the System</h1>
+
+    <form id="login-form">
+        <label for="username">Username: </label>
+        <input type="text" id="username" required />
+        <button type="submit">Login</button>
+    </form>
+
+    <h2>Available Pages</h2>
+    <ul id="available-pages"></ul>
+
+    <script>
+        const loginForm = document.getElementById('login-form');
+        const availablePages = document.getElementById('available-pages');
+        let token = '';
+
+        loginForm.addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+
+            const response = await fetch('/api/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username })
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                token = result.token;
+                displayAvailablePages(result.role);
+            } else {
+                availablePages.innerText = 'Login failed';
+            }
+        });
+
+        function displayAvailablePages(role) {
+            let pages = [];
+            if (role === 'user') {
+                pages = [
+                    { name: 'Report an Outage', url: 'report-outage.html' },
+                    { name: 'Preventative Maintenance', url: 'preventative-maintenance.html' },
+                    { name: 'Update My Info', url: 'update-my-info.html' }
+                ];
+            } else if (role === 'lineman') {
+                pages = [
+                    { name: 'Report an Outage', url: 'report-outage.html' },
+                    { name: 'Preventative Maintenance', url: 'preventative-maintenance.html' },
+                    { name: 'Update My Info', url: 'update-my-info.html' },
+                    { name: 'Update Requests', url: 'update-requests.html' }
+                ];
+            } else if (role === 'senior-lineman') {
+                pages = [
+                    { name: 'Report an Outage', url: 'report-outage.html' },
+                    { name: 'Preventative Maintenance', url: 'preventative-maintenance.html' },
+                    { name: 'Update My Info', url: 'update-my-info.html' },
+                    { name: 'Update Requests', url: 'update-requests.html' }
+                ];
+            }
+
+            availablePages.innerHTML = '';
+            pages.forEach(page => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `<a href="${page.url}">${page.name}</a>`;
+                availablePages.appendChild(listItem);
+            });
+        }
+    </script>
+</body>
+</html>
