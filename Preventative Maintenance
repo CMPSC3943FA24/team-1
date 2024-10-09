@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preventative Maintenance vs Outages</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .info {
+            border: 2px solid #007BFF;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #f0f8ff;
+        }
+        .highlight {
+            color: #ff0000;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Preventative Maintenance Request Information</h1>
+
+    <div class="info">
+        <p>
+            Preventative maintenance <span class="highlight">(PM)</span> is different from an outage. PM is scheduled work to
+            maintain or upgrade equipment and may require temporarily shutting off power to ensure safe conditions.
+        </p>
+        <p>
+            An <span class="highlight">outage</span> is an unplanned event caused by equipment failure, storms, or other factors,
+            resulting in the interruption of power.
+        </p>
+    </div>
+
+    <button onclick="showMoreInfo()">Learn More</button>
+
+    <div id="moreInfo" style="display: none;">
+        <p><strong>Preventative Maintenance:</strong> Typically scheduled in advance and communicated to customers. Helps reduce the likelihood of future outages.</p>
+        <p><strong>Outages:</strong> Can occur suddenly, and our teams respond as quickly as possible to restore power.</p>
+    </div>
+
+    <script>
+        function showMoreInfo() {
+            var moreInfoDiv = document.getElementById("moreInfo");
+            if (moreInfoDiv.style.display === "none") {
+                moreInfoDiv.style.display = "block";
+            } else {
+                moreInfoDiv.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+</html>
