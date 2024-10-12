@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>review active requests</title>
+    <style>
+        h1 {text-align: center;}
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        td {
+            text-align: center;
+        }
+        progress {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>review your active Requests</h1>
+
+<?php
+$host = 'localhost'; 
+$db = 'userdata';   
+$user = 'root'; 
+$pass = ''; 
+
+// Create a new PDO instance
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Connection failed: " . $e->getMessage());
+}
+
+// Sorting and filtering
+$sort = $_GET['sort'] ?? 'created_at';  // Default sort by 'created_at'
+$progress_filter = $_POST['progress'] ?? ''; // Progress filter from form
+$email = $_POST['email'] ?? ''; // Email input from form
+
+// Check if the form has been submitted
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($email)) {
+    // Query to fetch filtered and sorted tickets
+    $query = "SELECT * FROM tickets WHERE email = :email AND status = 'active'";
+    $params = ['email' => $email];
+
+    if (!empty($progress_filter)) {
+        $query .= " AND progress = :progress";
+        $params['progress'] = $progress_filter;
+    }
+    $query .= " ORDER BY $sort";
+
+    try {
+        $stmt = $pdo->prepare($query);
+        $stmt->execute($params);
+        $tickets = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if ($tickets) {
+            // Display tickets in a table
+            echo "<table>";
+            echo "<tr>
+                    <th><a href='?sort=id'>ID</a></th>
+                    <th><a href='?sort=name'>Name</a></th>
+                    <th><a href='?sort=issue'>Issue</a></th>
+                    <th><a href='?sort=status'>Status</a></th>
+                    <th><a href='?sort=progress'>Progress</a></th>
+                    <th><a href='?sort=created_at'>Created At</a></th>
+                    <th>Comments</th>
+                  </tr>";
+            foreach ($tickets as $ticket) {
+                echo "<tr>";
+                echo "<td>" . htmlspecialchars($ticket['id']) . "</td>";
+                echo "<td>" . htmlspecialchars($ticket['name']) . "</td>";
+                echo "<td>" . htmlspecialchars($ticket['issue']) . "</td>";
+                echo "<td>" . htmlspecialchars($ticket['status']) . "</td>";
+                echo "<td>";
+
+                // Display appropriate progress representation
+                if ($ticket['progress'] === 'in progress') {
+                    echo "<progress value='50' max='100'>50%</progress> Work in progress...";
+                } elseif ($ticket['progress'] === 'completed') {
+                    echo "<progress value='100' max='100'>Completed</progress>";
+                } else {
+                    echo "<progress value='0' max='100'>No progress</progress>";
+                }
+
+                echo "</td>";
+                echo "<td>
+                        <form method='POST' action='add_comment.php'>
+                            <input type='hidden' name='ticket_id' value='" . htmlspecialchars($ticket['id']) . "' />
+                            <input type='text' name='user_comment' placeholder='Add a comment' />
+                            <button type='submit'>Submit</button>
+                        </form>
+                      </td>";
+                echo "</tr>";
+            }
+            echo "</table>";
+        } else {
+            // No active requests found for this email
+            echo "<p>No active requests found for this email. Please check back later or contact support if you believe there is an issue.</p>";
+        }
+    } catch (PDOException $e) {
+        echo "Error fetching tickets: " . $e->getMessage();
+    }
+}
+?>
+
+<!-- Form for email input and progress filtering -->
+<form method="POST" action="">
+    <label for="email">Enter your email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="progress">Filter by Progress:</label>
+    <select id="progress" name="progress">
+        <option value="">All</option>
+        <option value="in progress">In Progress</option>
+        <option value="completed">Completed</option>
+    </select>
+
+    <button type="submit">review active requests</button>
+</form>
+
+</body>
+</html>
