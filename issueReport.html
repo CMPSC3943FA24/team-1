@@ -34,16 +34,16 @@
   </div>
 
   <!-- Form for user to submit outage report -->
-  <form id="outageForm">
-
+<form id="outageForm">
+    <ul>
       <li>
-        <label style="font-size: 20px" for="problemType">Select your problem:</label>
-        <select id="problemType" required>
+        <label for="priorityLevel">Select your problem:</label>
+        <select id="priorityLevel" required>
           <option value="">--Choose a problem--</option>
-          <option value="partial">Partial Power</option>
-          <option value="damage">Physical Damage</option>
-          <option value="outage">Power Outage</option>
-          <option value="line">Line Down</option>
+          <option value="4">Partial Power</option>
+          <option value="3">Physical Damage</option>
+          <option value="2">Power Outage</option>
+          <option value="1">Line Down</option>
         </select>
       </li>
 <br>
