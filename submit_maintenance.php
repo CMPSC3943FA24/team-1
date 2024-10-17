@@ -19,13 +19,13 @@ $email = $_POST['email'] ?? '';
 $issue = $_POST['issue'] ?? '';
 $comments = $_POST['comments'] ?? '';
 $image = $_FILES['image'] ?? null;
-if ($issue == "Line Down") {
-    $priority = "3";
-} elseif ($issue == "Power Outage") {
-    $priority = "2";
-} elseif ($issue == "Partial Power") {
-    $priority = "1";
+if ($issue == "Trees in Lines") {
+    $priority = "4";
 } elseif ($issue == "Physical Damage") {
+    $priority = "3";
+} elseif ($issue == "Security/Street Lights Out") {
+    $priority = "2";
+} elseif ($issue == "Other") {
     $priority = "1";
 } else {
     $priority = "1"; 
@@ -57,8 +57,8 @@ if (!empty($email)) {
                 exit;
             }
 
-            // Prep. statement to insert data into tickets table
-            $insertStmt = $pdo->prepare("INSERT INTO tickets (name, address, email, phone_number, meter_number, issue, comments, image, priority) VALUES (:name, :address, :email, :phone_number, :meter_number, :issue, :comments, :image, :priority)");
+            // Prep. statement to insert data into maintenance table
+            $insertStmt = $pdo->prepare("INSERT INTO maintenance (name, address, email, phone_number, meter_number, issue, comments, image, priority) VALUES (:name, :address, :email, :phone_number, :meter_number, :issue, :comments, :image, :priority)");
 
             // Bind parameters and execute the insert statement
             $insertStmt->execute([
