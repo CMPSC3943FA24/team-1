@@ -1,47 +1,21 @@
 <!DOCTYPE html>
-<html>
-  <head> 
-  
-  <link rel="stylesheet" type"text/css" href="ExoElectricStyles.css">
-  
-  </head>
-  
-  <body>
-    <div align="center">
-	  <a href="index.html">
-  	  <img src="LongLogo_Blk.png" alt="ExoElectric Logo" width="50%" height"auto"> </a>
-  	  
-    </div>
-  	    
-  	<div class="wrapper">
-  	  <input id="toggler" type="checkbox">
-      <label for="toggler">
-      <img src="MenuBar.png" alt="" width="10%" height="auto">
-      </label>
-   <div class="dropdown">
-      <a href="index.html">Home</a>
-      <a href="MyRequests.html">My Requests</a>
-      <a href="issueReport.html">Report an Outage</a>
-      <a href="MaintenanceRequest.html">Preventative Maintenance Request</a>
-      <a href="RequestTechnician.html">Request a Technician</a>
-    </div>
-    </div>
-  	  
-  <div align="center">
-      <h1>Local Map</h1>
-      <br> <br>
-      
-   	<iframe
-  		width="640"
- 		height="480"
-  		style="border:0"
-  		loading="lazy"
- 		allowfullscreen
-  		referrerpolicy="no-referrer-when-downgrade"
- 		src="https://www.google.com/maps/d/u/1/embed?mid=1dA7PUZTCP12TZ5QE0QaaSbspttkbpZs&ehbc=2E312F&noprof=1" key=AIzaSyADwav2BBv7ldF6OtoGijg8-22KociIDX0>
-	</iframe>
-  </div> 
-  
-  
-  </body>
+<html lang="en">
+<head>
+    <meta charsets="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Local Network</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+</head>
+<body onload="initMap()">
+
+    <h1>test</h1>
+    <div id="map"></div>
+        <script>
+  (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
+    key: "AIzaSyADwav2BBv7ldF6OtoGijg8-22KociIDX0",
+    v: "beta",
+  });
+</script>
+</body>
 </html>
