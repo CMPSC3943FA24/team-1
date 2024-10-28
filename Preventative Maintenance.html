@@ -20,8 +20,33 @@
             font-weight: bold;
         }
     </style>
+    <link rel="stylesheet" type"text/css" href="ExoElectricStyles.css">
 </head>
 <body>
+  <!-- LOGO -->
+  <div align="center">
+     <a href="index.html">
+  	 <img src="LongLogo_Blk.png" alt="ExoElectric Logo" width="50%" height="auto"> </a>
+	   <br>
+	</div>
+
+
+  <!-- MENU BAR -->
+  <div class="wrapper">
+     <input id="toggler" type="checkbox">
+     <label for="toggler">
+     <img src="MenuBar.png" alt="" width="10%" height="auto">
+     </label>
+  <div class="dropdown">
+     <a href="index.html">Home</a>
+     <a href="MyRequests.html">My Requests</a>
+     <a href="issueReport.html">Report an Outage</a>
+     <a href="RequestTechnician.html">Request a Technician</a>
+     <a href="LocalMap.html">Local Map</a>
+  </div>
+  </div>
+
+  <!-- Form -->
 
     <h1>Preventative Maintenance Request Information</h1>
 
@@ -57,23 +82,24 @@
 <form action="submit_maintenance.php" method="post" enctype="multipart/form-data">
     <label for="email">Email:</label>
     <input type="email" id="email" name="email" required>
-    <br>
+    <br><br>
     <label for="issue">Select Issue:</label>
     <select id="issue" name="issue" required>
-      <option value="Tree in Lines">Trees in Lines</option>
-      <option value="Physical Damage">Physical Damage</option>
-      <option value="Security/Street Lights Out">Security/Street Lights Out</option>
-      <option value="Other">Other</option>
+      <option value="2">Trees in Lines</option>
+      <option value="1">Physical Damage</option>
+      <option value="3">Security/Street Lights Out</option>
+      <option value="4">Other</option>
     </select>
-    <br>
+    <br><br>
+
 
     <label for="comments">Comments:</label>
     <textarea id="comments" name="comments"></textarea>
-    <br>
+    <br><br>
 
     <label for="image">Upload Image (PNG/JPG):</label>
     <input type="file" id="image" name="image" accept=".png, .jpg, .jpeg">
-    <br>
+    <br><br>
 
     <input type="submit" value="Submit Maintenance Ticket">
   </form>
