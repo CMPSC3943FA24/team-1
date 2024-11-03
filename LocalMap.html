@@ -2471,48 +2471,75 @@ Howell<br>
  </p>
         </div>
         <div class="column right" style="background-color:#74C3E1;">
+
+    </div>
             <h2>Status</h2>
             <p>
-             
-             //TEST AREA
-             
-<div id="bubble" class="bubble">0</div>
-<script>
-async function fetchData(url) {
-    const response = await fetch(url);
-    const text = await response.text();
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(text, 'text/html');
-    const value = parseFloat(doc.querySelector('#value').textContent);
-    const address = doc.querySelector('#address').textContent;
-    return { value, address };
-}
+             North South Roads<br>
+Long<br> 
+            
+             <div id="bubbles"></div>
+<script>             
+ async function fetchData(url) {
+            const response = await fetch(url);
+            const text = await response.text();
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(text, 'text/html');
 
-async function compareValues() {
-    try {
-        const data1 = await fetchData('https://raw.githubusercontent.com/CMPSC3943FA24/team-1/refs/heads/main/request%20viewer.php'); // Fetch from page 1
-        const data2 = { value: 42, address: '308 N LONG' }; // Example values from page 2
-
-        const bubble = document.getElementById('bubble');
-        bubble.textContent = data1.value || '0'; // Default to '0' if value is NaN
-
-        // Compare addresses
-        if (data1.address === data2.address) {
-            bubble.style.backgroundColor = 'green'; // Addresses match
-        } else {
-            bubble.style.backgroundColor = 'red'; // Addresses do not match
+            // Extract ticket data from the table
+            const rows = Array.from(doc.querySelectorAll('table tr'));
+            const ticketData = rows.slice(1).map(row => { // Skip header row
+                const cells = row.querySelectorAll('td');
+                return {
+                    address: cells[1].textContent // Only extract the address
+                };
+            });
+            return ticketData;
         }
-    } catch (error) {
-        console.error('Error fetching data:', error);
-    }
+
+        async function compareAddresses() {
+            try {
+                const data1 = await fetchData('https://raw.githubusercontent.com/DarthLiam93/Test-area/main/ValuesPage.html'); // Fetch from your page
+                const data2 = Array.from({ length: 1104 }, (_, i) => ({
+                    address: `Address ${i + 1}` // Example addresses
+                }));
+
+                const bubbleContainer = document.getElementById('bubbles');
+
+                // Create and update bubbles
+                data1.forEach((ticket, i) => {
+                    // Create bubble element
+                    const bubble = document.createElement('div');
+                    bubble.className = 'bubble';
+                    bubble.id = `bubble${i + 1}`;
+                    
+                    // Set bubble content to show the address
+                    bubble.textContent = ticket.address; // Display the address
+
+                    // Compare addresses
+                    if (ticket.address === data2[i]?.address) {
+                        bubble.style.backgroundColor = 'green'; // Addresses match
+                    } else {
+                        bubble.style.backgroundColor = 'red'; // Addresses do not match
+                    }
+
+                    // Append the bubble to the container
+                    bubbleContainer.appendChild(bubble);
+                });
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
 }
 
-document.addEventListener('DOMContentLoaded', compareValues);
+document.addEventListener('DOMContentLoaded', compareAddresses);
+
 </script>
 
          // TEST AREA
              Data..</p>
         </div>
     </div>
+ </body>
+</html>
  </body>
 </html>
