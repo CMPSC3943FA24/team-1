@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Help Center</title>
+   <link rel="stylesheet" href="styles.css">
+   <style>
+       
+       body {
+           font-family: Arial, sans-serif;
+           margin: 0;
+           padding: 20px;
+           background-color: #f4f4f9;
+           color: #333;
+       }
+
+       h1 {
+           color: #000000;
+           text-align: center;
+       }
+
+       .faq-section {
+           max-width: 600px;
+           margin: auto;
+       }
+
+       /* Accordion style */
+       .accordion-item {
+           background-color: #fff;
+           border: 1px solid #ddd;
+           border-radius: 5px;
+           margin-bottom: 10px;
+           overflow: hidden;
+           box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+       }
+
+       .accordion-title {
+           padding: 15px;
+           font-size: 1.1em;
+           cursor: pointer;
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+           background-color: #000000;
+           color: #fff;
+           transition: background-color 0.3s ease;
+       }
+
+       .accordion-title:hover {
+           background-color: #000000;
+       }
+
+       .accordion-title:after {
+           content: '+';
+           font-weight: bold;
+       }
+
+       .accordion-title.active:after {
+           content: '-';
+       }
+
+       .accordion-content {
+           max-height: 0;
+           padding: 0 15px;
+           overflow: hidden;
+           background-color: #f9f9f9;
+           transition: max-height 0.3s ease, padding 0.3s ease;
+       }
+
+       .accordion-content p {
+           margin: 15px 0;
+           color: #555;
+       }
+   </style>
+</head>
+<body>
+
+   <h1>Help Center</h1>
+   <div class="faq-section">
+       <div class="accordion-item">
+           <div class="accordion-title">How do I create an account?</div>
+           <div class="accordion-content">
+               <p>To create an account, go to the Sign-Up page and fill out the registration form with your email, password, and other required details. Once submitted, you'll receive a confirmation email to activate your account.</p>
+           </div>
+       </div>
+
+       <div class="accordion-item">
+           <div class="accordion-title">What if I forget my password?</div>
+           <div class="accordion-content">
+               <p>If you forget your password, click on "Forgot Password" on the login page. Enter your registered email address, and we'll send you a link to reset your password.</p>
+           </div>
+       </div>
+
+       <div class="accordion-item">
+           <div class="accordion-title">How do I report a power outage?</div>
+           <div class="accordion-content">
+               <p>To report a power outage, navigate to the report section, select the outage type, provide details, and submit the report. Our team will review and take action as soon as possible.</p>
+           </div>
+       </div>
+
+       <div class="accordion-item">
+           <div class="accordion-title">What should I do if the app isn’t loading properly?</div>
+           <div class="accordion-content">
+               <p>If the app isn’t loading, try refreshing the page or clearing your browser cache. If the issue persists, contact our support team for further assistance.</p>
+           </div>
+       </div>
+   </div>
+
+   <script>
+       // JavaScript for collapsible FAQ
+       document.querySelectorAll('.accordion-title').forEach(item => {
+           item.addEventListener('click', () => {
+               const content = item.nextElementSibling;
+               item.classList.toggle('active');
+               
+               // Toggle the answer visibility
+               if (content.style.maxHeight) {
+                   content.style.maxHeight = null;
+                   content.style.padding = "0 15px";
+               } else {
+                   content.style.maxHeight = content.scrollHeight + "px";
+                   content.style.padding = "15px";
+               }
+           });
+       });
+   </script>
+</body>
+</html>
