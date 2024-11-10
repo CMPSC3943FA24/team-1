@@ -25,7 +25,6 @@
            margin: auto;
        }
 
-       /* Accordion style */
        .accordion-item {
            background-color: #fff;
            border: 1px solid #ddd;
@@ -108,13 +107,13 @@
    </div>
 
    <script>
-       // JavaScript for collapsible FAQ
+      
        document.querySelectorAll('.accordion-title').forEach(item => {
            item.addEventListener('click', () => {
                const content = item.nextElementSibling;
                item.classList.toggle('active');
                
-               // Toggle the answer visibility
+               
                if (content.style.maxHeight) {
                    content.style.maxHeight = null;
                    content.style.padding = "0 15px";
