@@ -4,33 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload Profile Picture</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        .container {
-            max-width: 400px;
-            margin: auto;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-            display: none;
-        }
+        <link rel="stylesheet" type"text/css" href="ExoElectricStyles.css">
+         <style>
         .preview {
             margin-top: 20px;
             border: 2px solid #ccc;
             padding: 10px;
             text-align: center;
-        }
-        button {
-            margin-top: 10px;
-        }
     </style>
+
+
 </head>
 <body>
-<div class="container">
+
+  <!-- LOGO -->
+  <br><br>
+  <div align="center" class="fade-in-image">
+     <a href="index.html">
+  	 <img src="LongLogo_Blk.png" alt="ExoElectric Logo" width="50%" height="auto"> </a>
+	   <br>
+	</div>
+
+
+  <!-- MENU BAR -->
+  <div class="wrapper">
+     <input id="toggler" type="checkbox">
+     <label for="toggler">
+     <img src="MenuBar.png" alt="" width="10%" height="auto">
+     </label>
+  <div class="dropdown">
+     <a href="index.html">Home</a>
+     <a href="MyRequests.html">My Requests</a>
+     <a href="issueReport.html">Report an Outage</a>
+     <a href="LocalMap.html">Local Map</a>
+  </div>
+  </div>
+
+
+
+<div style="margin: 5%">
     <h1>Upload Profile Picture</h1>
     <form action="upload.php" method="POST" enctype="multipart/form-data">
         <label for="profilePic">Choose a profile picture:</label><br><br>
