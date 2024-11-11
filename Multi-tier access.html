@@ -4,17 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multi-Tier Access System</title>
+    <link rel="stylesheet" type"text/css" href="ExoElectricStyles.css">
+
 </head>
 <body>
-    <h1>Login to Access the System</h1>
 
-    <form id="login-form">
+      <!-- LOGO -->
+  <br><br>
+  <div align="center" class="fade-in-image">
+     <a href="index.html">
+  	 <img src="LongLogo_Blk.png" alt="ExoElectric Logo" width="50%" height="auto"> </a>
+	   <br>
+	</div>
+
+
+  <!-- MENU BAR -->
+  <div class="wrapper">
+     <input id="toggler" type="checkbox">
+     <label for="toggler">
+     <img src="MenuBar.png" alt="" width="10%" height="auto">
+     </label>
+  <div class="dropdown">
+     <a href="index.html">Home</a>
+     <a href="issueReport.html">My Requests</a>
+     <a href="PreventativeMaintenance.html">Preventative Maintenance Request</a>
+     <a href="LocalMap.html">Local Map</a>
+  </div>
+  </div>
+    
+    <h1 style="margin: 5%">Login to Access the System</h1>
+
+    <form style="margin: 5%" id="login-form">
         <label for="username">Username: </label>
         <input type="text" id="username" required />
         <button type="submit">Login</button>
     </form>
 
-    <h2>Available Pages</h2>
+    <h2 style="margin: 5%">Available Pages</h2>
     <ul id="available-pages"></ul>
 
     <script>
