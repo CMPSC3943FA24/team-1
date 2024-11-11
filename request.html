@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lineman Requests  view on one page</title>
+    
+    <link rel="stylesheet" type"text/css" href="ExoElectricStyles.css">
+    
     <style>
         table, th, td {
             border: 1px solid black;
@@ -16,8 +19,29 @@
         }
     </style>
 </head>
-<body>
+<body style="margin:10px; padding:10px">
+  <!-- LOGO -->
+  <div align="center">
+     <a href="index.html">
+  	 <img src="LongLogo_Blk.png" alt="ExoElectric Logo" width="50%" height="auto"> </a>
+	   <br>
+	</div>
 
+
+  <!-- MENU BAR -->
+  <div align="right" class="wrapper">
+     <input id="toggler" type="checkbox">
+     <label for="toggler">
+     <img src="MenuBar.png" alt="" width="10%" height="auto">
+     </label>
+  <div class="dropdown">
+     <a href="index.html">Home</a>
+     <a href="issueReport.html">My Requests</a>
+     <a href="PreventativeMaintenance.html">Preventative Maintenance Request</a>
+     <a href="LocalMap.html">Local Map</a>
+  </div>
+  </div>
+  
     <h2>All Requests</h2>
     <table>
         <thead>
