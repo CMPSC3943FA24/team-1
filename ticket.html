@@ -6,21 +6,36 @@
   <title>Power Outage Report</title>
 
   <link rel="stylesheet" type"text/css" href="ExoElectricStyles.css">
-
-</head>
-<body>
-
   <!-- LOGO -->
-  <div align="center">
+  <div align="center" class="fade-in-image">
      <a href="index.html">
   	 <img src="LongLogo_Blk.png" alt="ExoElectric Logo" width="50%" height="auto"> </a>
 	   <br>
 	</div>
 
+
+  <!-- MENU BAR -->
+  <div class="wrapper">
+     <input id="toggler" type="checkbox">
+     <label for="toggler">
+     <img src="MenuBar.png" alt="" width="10%" height="auto">
+     </label>
+  <div class="dropdown">
+     <a href="index.html">Home</a>
+     <a href="issueReport.html">My Requests</a>
+     <a href="Preventative Maintenance.html">Preventative Maintenance Request</a>
+     <a href="LocalMap.html">Local Map</a>
+  </div>
+  </div>
+
+</head>
+<body style="margin:5%">
+
+
 <form action="submit_ticket.php" method="post">
     <label for="email">Email:</label>
     <input type="email" id="email" name="email" required>
-<br>
+<br><br>
     <label for="issue">Select Issue:</label>
     <select id="issue" name="issue" required>
         <option value="Power Outage">Power Outage</option>
@@ -28,11 +43,11 @@
         <option value="Electrical Short">Electrical Short</option>
         <option value="Other">Other</option>
     </select>
-<br>
+<br><br>
     <label for="comments">Comments:</label>
     <textarea id="comments" name="comments"></textarea>
 
-<br>
+<br><br>
     
     <input type="submit" value="Submit Ticket">
 </form>
