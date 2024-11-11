@@ -1,12 +1,20 @@
 <!DOCTYPE html>
  <head>
 
-  //TESTAREA
-
+   <link rel="stylesheet" type"text/css" href="ExoElectricStyles.css">
    <meta charset="utf-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  //TESTAREA
+   <script>
+        function TestsFunction() {
+            var T = document.getElementById("TestsDiv"),
+                displayValue = "";
+            if (T.style.display == "")
+                displayValue = "none";
+
+            T.style.display = displayValue;
+        }
+    </script>
     <style>
     {
         box-sizing: border-box;
@@ -35,8 +43,6 @@
     clear: both;
     }
 
-     // TEST AREA
-
      .bubble {
             width: 100px;
             height: 100px;
@@ -48,14 +54,41 @@
             font-weight: bold;
             margin-top: 20px; /* For spacing */
         }
-     //TEST AREA
-
-     
     </style>
+    <!-- LOGO -->
+  <br><br>
+  <div align="center" class="fade-in-image">
+     <a href="index.html">
+  	 <img src="LongLogo_Blk.png" alt="ExoElectric Logo" width="50%" height="auto"> </a>
+	   <br>
+	</div>
+
+
+  <!-- MENU BAR -->
+  <div class="wrapper" style="align: right">
+     <input id="toggler" type="checkbox">
+     <label for="toggler">
+     <img src="MenuBar.png" alt="" width="10%" height="auto">
+     </label>
+  <div class="dropdown">
+     <a href="index.html">Home</a>
+     <a href="issueReport.html">My Requests</a>
+     <a href="PreventativeMaintenance.html">Preventative Maintenance Request</a>
+  </div>
+  </div>
+
  </head>
- <iframe src="https://www.google.com/maps/d/u/1/embed?mid=1dA7PUZTCP12TZ5QE0QaaSbspttkbpZs&ehbc=2E312F" width="1000" height="520"></iframe>
+ <br><br>
+ <div align="center">
+   <iframe src="https://www.google.com/maps/d/u/1/embed?mid=1dA7PUZTCP12TZ5QE0QaaSbspttkbpZs&ehbc=2E312F" width="1000" height="520"></iframe>
+ </div>
+
+<br><br>
+
  <body>
-  <h1>My Local Network</h1>
+  <h1 style="margin: 2%">My Local Network</h1>
+  <button onclick="TestsFunction()" class="button-2" style="width: 20%; margin: 2%">Reveal Addresses</button>  
+  
     <div class="row">
         <div class="column left" style="background-color:#FFB695;">
             <h2>address</h2>
