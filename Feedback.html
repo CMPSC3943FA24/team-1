@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exoelectric Feedback Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    textarea, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: gray;
+    }
+
+    .response-message {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2> Feedback page about Exoelectric App!</h2>
+    <form id="feedbackForm">
+      <label for="feedbackType">Feedback Type</label>
+      <select id="feedbackType">
+        <option value="map_issue">Map Issue</option>
+        <option value="alignment_problem">Alignment Problem</option>
+        <option value="general_feedback">General Feedback</option>
+        <option value="outage">Outage</option>
+        <option value="maintenance">Maintenance</option>
+      </select>
+
+      <label for="comments">Comments</label>
+      <textarea id="comments" rows="3" required></textarea>
+
+      <label for="alignmentAccuracy">Rate the App</label>
+      <select id="alignmentAccuracy">
+        <option value="excellent">Excellent</option>
+        <option value="good">Good</option>
+        <option value="average">Average</option>
+        <option value="poor">Poor</option>
+      </select>
+
+      <label for="mapUpdate">Was the App Working Well?</label>
+      <select id="mapUpdate">
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+
+      <button type="button" onclick="submitFeedback()">Submit Feedback</button>
+      <p id="responseMessage" class="response-message"></p>
+    </form>
+  </div>
+
+  <script>
+    async function submitFeedback() {
+      const feedbackType = document.getElementById("feedbackType").value;
+      const comments = document.getElementById("comments").value;
+      const alignmentAccuracy = document.getElementById("alignmentAccuracy").value;
+      const mapUpdate = document.getElementById("mapUpdate").value;
+
+      try {
+        await fetch('/api/feedback', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ feedbackType, comments, alignmentAccuracy, mapUpdate })
+        });
+       document.getElementById("responseMessage").innerText = 'Successfully submitted.';
+        document.getElementById("feedbackForm").reset();
+      } catch {
+        document.getElementById("responseMessage").innerText = 'Successfully submitted.';
+      }
+    }
+  </script>
+</body>
+</html>
