@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mass Messaging System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 700px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            font-size: 30px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: bold;
+        }
+        textarea {
+            width: 97%;
+            height: 100px;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: none;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9ffe9;
+            border: 1px solid #a1d9a1;
+            border-radius: 4px;
+            color: #2d862d;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Mass Messaging System</h1>
+</header>
+
+<div class="container">
+    <h1>Send System Update</h1>
+    <form id="messageForm">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Type your message here..." required></textarea>
+        
+        <label for="recipients">Select Recipients</label>
+        <select id="recipients" name="recipients">
+            <option value="all">All Customers</option>
+            <option value="region1">Region 1 (East)</option>
+            <option value="region2">Region 2 (North)</option>
+            <option value="region2">Region 3 (South)</option>
+            <option value="region2">Region 4 (West)</option>
+            <option value="priority">Priority Customers</option>
+        </select>
+        
+        <button type="submit">Send Message</button>
+    </form>
+    <div class="output" id="output">
+        <strong>Message Sent:</strong> <span id="sentMessage"></span>
+    </div>
+</div>
+
+<script>
+    const form = document.getElementById('messageForm');
+    const output = document.getElementById('output');
+    const sentMessage = document.getElementById('sentMessage');
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // Get form values
+        const message = document.getElementById('message').value;
+        const recipients = document.getElementById('recipients').value;
+
+        // Simulate sending the message
+        const recipientText = recipients === 'all' 
+            ? 'to all customers' 
+            : `to ${recipients.replace(/region(\d+)/, 'Region $1').replace('priority', 'priority customers')}`;
+        sentMessage.textContent = `${message} (${recipientText})`;
+
+        // Display confirmation
+        output.style.display = 'block';
+
+        // Clear form
+        form.reset();
+    });
+</script>
+
+</body>
+</html>
