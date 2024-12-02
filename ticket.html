@@ -23,7 +23,7 @@
   <div class="dropdown">
      <a href="index.html">Home</a>
      <a href="issueReport.html">My Requests</a>
-     <a href="Preventative Maintenance.html">Preventative Maintenance Request</a>
+     <a href="PreventativeMaintenance.html">Preventative Maintenance Request</a>
      <a href="LocalMap.html">Local Map</a>
   </div>
   </div>
@@ -31,25 +31,34 @@
 </head>
 <body style="margin:5%">
 
+ <a href="javascript:history.back()" class="back-button">
+      <img src="icons8-back-arrow-50.png" alt="Back Button" />
+  </a><br><br>
 
-<form action="submit_ticket.php" method="post">
+
+  <form action="submit_ticket.php" method="post" enctype="multipart/form-data">
     <label for="email">Email:</label>
     <input type="email" id="email" name="email" required>
-<br><br>
+    <br><br>
     <label for="issue">Select Issue:</label>
     <select id="issue" name="issue" required>
-        <option value="Power Outage">Power Outage</option>
-        <option value="Flickering Lights">Flickering Lights</option>
-        <option value="Electrical Short">Electrical Short</option>
-        <option value="Other">Other</option>
+      <option value="Power Outage">Power Outage</option>
+      <option value="Partial Power">Partial Power</option>
+      <option value="Line Down">Line Down</option>
+      <option value="Physical Damage">Physical Damage</option>
     </select>
 <br><br>
     <label for="comments">Comments:</label>
     <textarea id="comments" name="comments"></textarea>
+    <br><br>
+    
+    <label for="image">Upload Image (PNG/JPG):</label>
+    <input type="file" id="image" name="image" accept=".png, .jpg, .jpeg">
+    <br>
 
 <br><br>
     
-    <input type="submit" value="Submit Ticket">
+    <input type="submit" value="Submit Ticket" class="button-2">
 </form>
 </body>
 </html>
