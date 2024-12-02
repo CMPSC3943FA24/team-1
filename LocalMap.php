@@ -1,12 +1,18 @@
 <!DOCTYPE html>
  <head>
+ <header>
 
-  //TESTAREA
+        <a href="javascript:history.back()" class="back-button">
+            <img src="icons8-back-arrow-50.png" alt="Back Button" />
+        </a>
+    </header>
+    <div align="center">
+    <img src="LongLogo_Blk.png" alt="ExoElectric Logo" width="50%" height="auto"> 
 
    <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  //TESTAREA
+ 
     <style>
     {
         box-sizing: border-box;
@@ -2466,7 +2472,7 @@ Howell<br>
             <h2>Status</h2>
             <p>
        <br><br> 
-
+       <h2>Outage Tickets<h2>
        <?php
 $host = 'localhost';
 $dbname = 'userdata';
@@ -2489,7 +2495,7 @@ if (file_exists($file)) {
     echo "Error: Addresses file not found.";
     exit;
 }
-$query = "SELECT address FROM tickets";
+$query = "SELECT address, status FROM tickets";
 $stmt = $pdo->query($query);
 $dbAddresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $results = [];
@@ -2498,6 +2504,7 @@ foreach ($dbAddresses as $dbAddress) {
     $exists = in_array($dbAddressTrimmed, $fileAddresses);
     $results[] = [
         'address' => $dbAddressTrimmed,
+        'status' => $dbAddress['status'],  
         'exists' => $exists
     ];
 }
@@ -2522,10 +2529,73 @@ foreach ($dbAddresses as $dbAddress) {
 <body>
     <div id="results">
         <?php foreach ($results as $result): ?>
-            <div class="bubble <?php echo $result['exists'] ? 'green' : 'red'; ?>">
-                <?php echo $result['address']; ?>
+            <div class="bubble <?php echo'red'; ?>">
+            <?php echo $result['address']; ?> - <?php echo $result['status']; ?>
             </div>
         <?php endforeach; ?>
+        <br>Maintenance Tickets<br><br>
+
+
+<?php
+$host = 'localhost';
+$dbname = 'userdata';
+$username = 'root';
+$password = '';
+try {   
+$pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+die("Connection failed: " . $e->getMessage());
+}
+$file = 'addresses.txt';
+if (file_exists($file)) { 
+$fileAddresses = file($file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);  
+$fileAddresses = array_map(function($address) {
+ return preg_replace('/\s+/', ' ', trim($address));  
+}, $fileAddresses);
+} else {
+
+echo "Error: Addresses file not found.";
+exit;
+}
+$query = "SELECT address, status FROM maintenance";
+$stmt = $pdo->query($query);
+$dbAddresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$results = [];
+foreach ($dbAddresses as $dbAddress) {  
+$dbAddressTrimmed = preg_replace('/\s+/', ' ', trim($dbAddress['address']));
+$exists = in_array($dbAddressTrimmed, $fileAddresses);
+$results[] = [
+ 'address' => $dbAddressTrimmed,
+ 'status' => $dbAddress['status'],  
+ 'exists' => $exists
+];
+}
+?>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Local Map</title>
+<style>
+ .bubble {
+     display: block; 
+     font-size: 18px;  
+ }
+ .green {
+     background-color: #ADD8E6; 
+ }
+ .red {
+     background-color: #fddede; 
+    
+ }
+</style>
+</head>
+<body>
+<div id="results">
+ <?php foreach ($results as $result): ?>
+     <div class="bubble <?php echo 'green'  ?>">
+     <?php echo $result['address']; ?> - <?php echo $result['status']; ?>
+     </div>
+ <?php endforeach; ?>
     </div>
 </body>
 </html>

@@ -6,11 +6,17 @@
     <title>ExoElectric</title>
     <link rel="stylesheet" type="text/css" href="ExoElectricStyles.css">
     <div align="right">
-        <a href="ProfilePage.html"> 
-            <img src="Profile.png" alt="Default User Profile" width="10%" height="auto"> 
-        </a>
+       
     </div>
 </head>
+<header>
+
+        <a href="javascript:history.back()" class="back-button">
+            <img src="icons8-back-arrow-50.png" alt="Back Button" />
+        </a>
+    </header>
+
+
 <body>
 
 <?php
@@ -64,6 +70,10 @@ if (!$userData) {
         <div>
             <label for="email">New Email</label>
             <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+            <label for="password">New Password</label>
+            <input type="password" id="password" name="password" required>
         </div>
         
         <div>

@@ -1,56 +1,57 @@
 <?php
-
-//verifies email and password entered exists in the database
+session_start();
+// Initialize a variable to check if the login is invalid
 $is_invalid = false;
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    
+    // Connect to the database
     $mysqli = require __DIR__ . "/database.php";
     
-    $sql = sprintf("SELECT * FROM user
-                    WHERE email = '%s'",
-                   $mysqli->real_escape_string($_POST["email"]));
+    // Sanitize email input to prevent SQL injection
+    $email = $mysqli->real_escape_string($_POST["email"]);
     
+    // Query the database for the user with the given email
+    $sql = "SELECT * FROM user WHERE email = '$email'";
     $result = $mysqli->query($sql);
-    
     $user = $result->fetch_assoc();
-    //if user and password matches then the user goes to the main page
-    if ($user) {
-        
-        if (($_POST["password"] == $user["password"])) {
-       
-            header("Location: index.html");
-            exit;
-        }
-    }
     
-    $is_invalid = true;
+    // If user exists and the password matches
+    if ($user && $_POST["password"] == $user["password"]) {
+        $_SESSION['email'] = $user['email'];
+        $_SESSION['name'] = $user['name'];
+        $_SESSION['image'] = $user['image']; 
+        $_SESSION['id'] = $user['id']; 
+        $_SESSION['authority'] = $user['authority'];
+        header("Location: index.php?email=" . urlencode($user['email']) . "&name=" . urlencode($user['name']) . "&authority=" . urlencode($user['authority']));
+        exit;
+    } else {
+        // Set invalid login flag if credentials don't match
+        $is_invalid = true;
+    }
 }
-
-//just html
 ?>
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>Login</title>
     <meta charset="UTF-8">
 </head>
 <body>
-    
     <h1>Login</h1>
     
     <?php if ($is_invalid): ?>
-        <em>Invalid login</em>
+        <em>Invalid login credentials. Please try again.</em>
     <?php endif; ?>
     
     <form method="post">
         <label for="email">Email</label>
-        <input type="email" name="email" id="email"
-               value="<?= htmlspecialchars($_POST["email"] ?? "") ?>">
+        <input type="email" name="email" id="email" value="<?= htmlspecialchars($_POST["email"] ?? "") ?>" required>
         
         <label for="password">Password</label>
-        <input type="password" name="password" id="password">
+        <input type="password" name="password" id="password" required>
         
-        <button>Log in</button>
+        <button type="submit">Log in</button>
     </form>
     
 </body>

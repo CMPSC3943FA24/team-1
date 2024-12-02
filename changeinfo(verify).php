@@ -31,12 +31,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
+    <title>Verify Login Information</title>
     <meta charset="UTF-8">
 </head>
+<header>
+
+        <a href="javascript:history.back()" class="back-button">
+            <img src="icons8-back-arrow-50.png" alt="Back Button" />
+        </a>
+    </header>
+
+
 <body>
     
-    <h1>Login</h1>
+    <h1>Verify Login Information</h1>
     
     <?php if ($is_invalid): ?>
         <em>Invalid login Information </em>
@@ -50,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <label for="password">Password</label>
         <input type="password" name="password" id="password">
         
-        <button>Verify Login Information</button>
+        <button>Submit Login Information</button>
     </form>
     
 </body>
