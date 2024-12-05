@@ -33,11 +33,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<link rel="stylesheet" type="text/css" href="EXXOELECTRIC_FT.css">
+<head > 
+<div align="center">
+    <img src="LongLogo_Blk.png" alt="ExoElectric Logo" width="40%" height="auto"> 
+    
     <title>Login</title>
     <meta charset="UTF-8">
 </head>
-<body>
+
+<body align="center">
     <h1>Login</h1>
     
     <?php if ($is_invalid): ?>
